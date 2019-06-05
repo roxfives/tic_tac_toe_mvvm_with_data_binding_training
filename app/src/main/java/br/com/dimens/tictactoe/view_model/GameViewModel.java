@@ -22,10 +22,13 @@ public class GameViewModel extends ViewModel {
     }
 
     public void onClickedCellAt(int row, int column) {
-        if (mGame.getCells()[row][column] == null) {
+        if(mGame.getCells()[row][column] == null) {
             mGame.getCells()[row][column] = new Cell(mGame.getCurrentPlayer());
-            mCells.put(stringFromNumbers(row, column), mGame.getCurrentPlayer().getValue());
-            if (mGame.hasGameEnded()) {
+
+            mCells.put(stringFromNumbers(row, column),
+                    mGame.getCurrentPlayer().getValue());
+
+            if(mGame.hasGameEnded()) {
                 mGame.reset();
             } else {
                 mGame.switchPlayer();
