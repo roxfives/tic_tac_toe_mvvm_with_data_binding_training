@@ -13,26 +13,26 @@ import static br.com.dimens.tictactoe.utils.StringUtilities.stringFromNumbers;
 
 public class GameViewModel extends ViewModel {
 
-    public ObservableArrayMap<String, String> cells;
-    private Game game;
+    public ObservableArrayMap<String, String> mCells;
+    private Game mGame;
 
     public void init(String player1, String player2) {
-        game = new Game(player1, player2);
-        cells = new ObservableArrayMap<>();
+        mGame = new Game(player1, player2);
+        mCells = new ObservableArrayMap<>();
     }
 
     public void onClickedCellAt(int row, int column) {
-        if (game.getCells()[row][column] == null) {
-            game.getCells()[row][column] = new Cell(game.getCurrentPlayer());
-            cells.put(stringFromNumbers(row, column), game.getCurrentPlayer().getValue());
-            if (game.hasGameEnded())
-                game.reset();
+        if (mGame.getCells()[row][column] == null) {
+            mGame.getCells()[row][column] = new Cell(mGame.getCurrentPlayer());
+            mCells.put(stringFromNumbers(row, column), mGame.getCurrentPlayer().getValue());
+            if (mGame.hasGameEnded())
+                mGame.reset();
             else
-                game.switchPlayer();
+                mGame.switchPlayer();
         }
     }
 
     public LiveData<Player> getWinner() {
-        return game.getWinner();
+        return mGame.getWinner();
     }
 }
