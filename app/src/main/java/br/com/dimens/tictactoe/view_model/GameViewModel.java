@@ -25,10 +25,11 @@ public class GameViewModel extends ViewModel {
         if (mGame.getCells()[row][column] == null) {
             mGame.getCells()[row][column] = new Cell(mGame.getCurrentPlayer());
             mCells.put(stringFromNumbers(row, column), mGame.getCurrentPlayer().getValue());
-            if (mGame.hasGameEnded())
+            if (mGame.hasGameEnded()) {
                 mGame.reset();
-            else
+            } else {
                 mGame.switchPlayer();
+            }
         }
     }
 
