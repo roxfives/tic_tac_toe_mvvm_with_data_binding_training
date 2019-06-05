@@ -17,7 +17,7 @@ public class Game {
     private Player mCurrentPlayer = mPlayer1;
     private Cell[][] mCells;
 
-    private MutableLiveData<Player> winner = new MutableLiveData<>();
+    private MutableLiveData<Player> mWinner = new MutableLiveData<>();
 
     public Game(String playerOne, String playerTwo) {
         mCells = new Cell[BOARD_SIZE][BOARD_SIZE];
@@ -28,6 +28,18 @@ public class Game {
         mCurrentPlayer = mPlayer1;
     }
 
+    public Cell[][] getCells() {
+        return mCells;
+    }
+
+    public Player getCurrentPlayer() {
+        return mCurrentPlayer;
+    }
+
+    public MutableLiveData<Player> getWinner() {
+        return mWinner;
+    }
+
     public void switchPlayer() {
         mCurrentPlayer = (mCurrentPlayer == mPlayer1)? mPlayer2 : mPlayer1;
     }
@@ -36,12 +48,12 @@ public class Game {
         if(hasThreeSameHorizontalCells()
                 || hasThreeSameVerticalCells()
                     || hasThreeSameDiagonalCells()) {
-            winner.setValue(mCurrentPlayer);
+            mWinner.setValue(mCurrentPlayer);
             return true;
         }
 
         if(isBoardFull()) {
-            winner.setValue(null);
+            mWinner.setValue(null);
             return true;
         }
 
