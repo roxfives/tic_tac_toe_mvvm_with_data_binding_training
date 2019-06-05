@@ -33,7 +33,7 @@ public class Game {
     }
 
     public Player getCurrentPlayer() {
-        return mCurrentPlayer;
+        return (mCurrentPlayer == mPlayer1)? mPlayer1 : mPlayer2;
     }
 
     public MutableLiveData<Player> getWinner() {
@@ -145,6 +145,8 @@ public class Game {
             if (!comparisonBase.getPlayer().getValue()
                     .equals(cells[i].getPlayer().getValue())) {
                 return false;
+            } else {
+                System.out.println("DEBUG: " + comparisonBase.getPlayer().getValue() + " " + cells[i].getPlayer().getValue());
             }
         }
 
